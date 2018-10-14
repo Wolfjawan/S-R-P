@@ -26,5 +26,14 @@ setup(name              = 'Adafruit_MotorHAT',
       license           = 'MIT',
       url               = 'https://github.com/adafruit/Adafruit_Python_MotorHAT/',
       dependency_links  = ['https://github.com/adafruit/Adafruit_Python_GPIO/tarball/master#egg=Adafruit-GPIO-0.7'],
-      install_requires  = ['Adafruit-GPIO>=0.7'],
+      install_requires  = [
+          'Adafruit-GPIO>=0.7',
+          psycopg2,
+          Adafruit-PureIO,
+          Flask,
+          Flask-API,
+          Flask-Cors,
+          Flask-SQLAlchemy,
+          SQLAlchemy
+      ],
       packages          = find_packages())

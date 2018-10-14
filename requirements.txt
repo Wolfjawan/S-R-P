@@ -1,0 +1,13 @@
+Adafruit-GPIO==1.0.3
+Adafruit-PureIO==0.2.3
+docker==3.5.0
+docker-compose==1.22.0
+docker-pycreds==0.3.0
+dockerpty==0.4.1
+Flask==1.0.2
+Flask-API==1.0
+Flask-Cors==3.0.6
+Flask-SQLAlchemy==2.3.2
+psycopg2==2.7.5
+requests==2.18.4
+SQLAlchemy==1.2.12

@@ -3,16 +3,24 @@ from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from flask_cors import CORS, cross_origin
 from flask_api import status
 from flask import request
+from model.user import User
+from app import app, db
 import atexit
 import sys
 import json
 store={"speed":100}
 user_status = False
 
-from sqlalchemy import create_engine
-db_string="postgres://test:test@localhost:5432/test"
-db = create_engine(db_string)
+#from sqlalchemy.ext.declarative import declarative_base
 
+#Base = declarative_base()
+
+from sqlalchemy import create_engine, Column, Integer, String
+# db_string="postgres://test:test@localhost:5432/test"
+# db = create_engine(db_string, echo=True)
+
+#app = Flask(__name__)
+CORS(app)
 
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x60)
@@ -23,6 +31,7 @@ myMotor2 = mh.getMotor(2)
 myMotor3 = mh.getMotor(3)
 myMotor4 = mh.getMotor(4)
 
+# hey 
 def turnOffMotors():
     print("stop")
     mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
@@ -44,8 +53,7 @@ def m1goForward():
     print(store["speed"])
     
 
-app = Flask(__name__)
-CORS(app)
+
 @app.route("/")
 def hello():
     return "Hello World!"
@@ -65,7 +73,10 @@ def save():
             increase_speed()
             return "speed"
         if name == 20:
-            db.execute("INSERT INTO admins (name, password) values ('mohsen','11111')")
+            # db.execute("INSERT INTO admins (name, password) values ('mohsen','11111')")
+            user_1 = User('Mohsen3', 'mohmon@gmail.com')
+            db.session.add(user_1)
+            db.session.commit()
             return "cool"
         
 user={
@@ -80,10 +91,14 @@ def login():
         req_data = request.get_json()
         user_name = req_data['user_name']
         password = req_data['password']
-        if user["user_name"]==user_name and user["password"]==password:
-            user_status = True
-            print(user_status)
-            return "true"
+        
+
+
+        
+        #if user["user_name"]==user_name and user["password"]==password:
+            #user_status = True
+            #print(user_status)
+            #return "true"
         
         content = "user name or password are wrong"
         return content, status.HTTP_404_NOT_FOUND
@@ -92,3 +107,4 @@ def login():
 def check_api():
     if request.method == "POST":
         return "true"
+#FLASK_APP=server.py FLASK_ENV=development flask run --host=0.0.0.0 --port=8000
