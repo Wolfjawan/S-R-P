@@ -2,8 +2,8 @@ from flask import Flask
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from flask_cors import CORS, cross_origin
 from flask_api import status
-from flask import request
-from model.user import User
+from flask import request, jsonify
+from model.user import Users
 from app import app, db
 import atexit
 import sys
@@ -78,19 +78,31 @@ def save():
             db.session.add(user_1)
             db.session.commit()
             return "cool"
-        
-user={
-    "user_name":"mohsen",
-    "password":"111111"
-    }
 
+
+@app.route('/save-data',methods=['post'])
+def save_data():
+    print(request.method)
+    if request.method == 'POST':
+        req_data = request.get_json()
+        name = req_data['user_name']
+        password = req_data['password']
+        email = req_data['email']
+        user = Users(name, email, password)
+        db.session.add(user)
+        db.session.commit()
+        print(user)
+        return "cool"
+        
 
 @app.route('/login',methods=['post'])
 def login():
     if request.method == "POST":
         req_data = request.get_json()
-        user_name = req_data['user_name']
+        name = req_data['user_name']
         password = req_data['password']
+        
+        
         
 
 
@@ -103,8 +115,26 @@ def login():
         content = "user name or password are wrong"
         return content, status.HTTP_404_NOT_FOUND
 
+
+
+
 @app.route('/check_api',methods=['post'])
 def check_api():
     if request.method == "POST":
         return "true"
+    
+    
+
+@app.route('/get-users',methods=['get'])
+def get_users():
+    users = db.session.query(Users)
+    users_json = []
+    for user in users:
+        single_user_json = {
+            'name': user.name,
+        }
+        users_json.append(single_user_json)
+        
+    return jsonify(users_json)
+     
 #FLASK_APP=server.py FLASK_ENV=development flask run --host=0.0.0.0 --port=8000
