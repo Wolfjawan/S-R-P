@@ -13,3 +13,4 @@ dockerpty = "==0.4.1"
 python_version = "3.5"
 
 [packages]
+s-r-m = {editable = true, path = "."}

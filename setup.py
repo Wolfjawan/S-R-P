@@ -18,22 +18,22 @@ classifiers = ['Development Status :: 4 - Beta',
                'Topic :: System :: Hardware']
 
 
-setup(name              = 'Adafruit_MotorHAT',
-      version           = '1.4.0',
-      author            = 'Limor Fried',
-      author_email      = 'support@adafruit.com',
-      description       = 'Library for Adafruit Motor HAT',
-      license           = 'MIT',
-      url               = 'https://github.com/adafruit/Adafruit_Python_MotorHAT/',
-      dependency_links  = ['https://github.com/adafruit/Adafruit_Python_GPIO/tarball/master#egg=Adafruit-GPIO-0.7'],
+setup(name              = 'S-R-M',
+      version           = '0.1.0',
+      author            = 'Mohsen',
+      author_email      = 'TODO',
+      description       = 'TODO',
       install_requires  = [
           'Adafruit-GPIO>=0.7',
-          psycopg2,
-          Adafruit-PureIO,
-          Flask,
-          Flask-API,
-          Flask-Cors,
-          Flask-SQLAlchemy,
-          SQLAlchemy
+          'psycopg2',
+          'Adafruit-PureIO',
+          'Flask',
+          'Flask-API',
+          'Flask-Cors',
+          'Flask-SQLAlchemy',
+          'SQLAlchemy'
       ],
+      entry_points={
+          'console_scripts': ['srp = server.py']
+      }
       packages          = find_packages())
