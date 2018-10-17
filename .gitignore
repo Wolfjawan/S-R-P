@@ -2,3 +2,6 @@ virtualenv
 *.pyc
 venv3
 __pycache__
+build
+dist
+S_R_P.egg-info
