@@ -1,8 +1,0 @@
-Adafruit-GPIO>=0.7
-psycopg2
-Adafruit-PureIO
-Flask
-Flask-API
-Flask-Cors
-Flask-SQLAlchemy
-SQLAlchemy

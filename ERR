@@ -1,6 +1,0 @@
-THESE PACKAGES DO NOT MATCH THE HASHES FROM Pipfile.lock!. If you have updated the package versions, please update the hashes. Otherwise, examine the package contents carefully; someone may have tampered with them.
-    adafruit-gpio==1.0.3 from https://www.piwheels.org/simple/adafruit-gpio/Adafruit_GPIO-1.0.3-py3-none-any.whl#sha256=036133fe17e3208c48e8e7c7d797d840256f18d2e6c6ed87b175aafcfbdf0a3a (from -r /tmp/pipenv-tfkw0mti-requirements/pipenv-yzbmi5gz-requirement.txt (line 1)):
-        Expected sha256 d6465b92c866c51ca8f3bc1e8f2ec36f5ccdb46d0fd54101c1109756d4a2dcd0
-             Got        036133fe17e3208c48e8e7c7d797d840256f18d2e6c6ed87b175aafcfbdf0a3a
-
-
