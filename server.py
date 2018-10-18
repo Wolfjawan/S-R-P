@@ -41,6 +41,8 @@ def turnOffMotors():
     
 atexit.register(turnOffMotors)
 
+from controlers import *
+
 def increase_speed():
     print(store["speed"])
     store["speed"]=store["speed"]+10
@@ -80,19 +82,6 @@ def save():
             return "cool"
 
 
-@app.route('/save-data',methods=['post'])
-def save_data():
-    print(request.method)
-    if request.method == 'POST':
-        req_data = request.get_json()
-        name = req_data['user_name']
-        password = req_data['password']
-        email = req_data['email']
-        user = Users(name, email, password)
-        db.session.add(user)
-        db.session.commit()
-        print(user)
-        return "cool"
         
 
 @app.route('/login',methods=['post'])
@@ -101,11 +90,6 @@ def login():
         req_data = request.get_json()
         name = req_data['user_name']
         password = req_data['password']
-        
-        
-        
-
-
         
         #if user["user_name"]==user_name and user["password"]==password:
             #user_status = True
