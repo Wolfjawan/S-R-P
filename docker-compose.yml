@@ -1,8 +1,7 @@
 
 version: '2'
 services:
-
-  postgres:
+  db:
     # For more details on configuring the Postgres Docker image, see:
     # https://hub.docker.com/_/postgres/  
     image: postgres:10.3-alpine
@@ -11,8 +10,7 @@ services:
     ports:
       - '5432:5432'
     network_mode: bridge
-    container_name: postgres
-
+    container_name: S-R-U
     environment:
       POSTGRES_USER: 'test'
       POSTGRES_PASSWORD: 'test'
@@ -20,4 +18,12 @@ services:
       
     # Copy files from dbinit into the image so that they will be run on boot
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./initdb:/docker-entrypoint-initdb.d:rw
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code:rw
+    depends_on:
+      - db
