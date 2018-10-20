@@ -11,6 +11,7 @@ from model.user import Users
 from app import app, db
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from controlers.save_users import *
+
 CORS(app)
 
 store={"speed":100}
