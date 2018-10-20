@@ -1,26 +1,28 @@
 from flask import Flask
-from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 from flask_cors import CORS, cross_origin
 from flask_api import status
 from flask import request, jsonify
-from model.user import Users
-from app import app, db
 import atexit
 import sys
 import json
+from sqlalchemy import create_engine, Column, Integer, String
+
+from model.user import Users
+from app import app, db
+from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
+from controlers.save_users import *
+CORS(app)
+
 store={"speed":100}
 user_status = False
 
-#from sqlalchemy.ext.declarative import declarative_base
 
-#Base = declarative_base()
 
-from sqlalchemy import create_engine, Column, Integer, String
 # db_string="postgres://test:test@localhost:5432/test"
 # db = create_engine(db_string, echo=True)
 
 #app = Flask(__name__)
-CORS(app)
+
 
 # create a default object, no changes to I2C address or frequency
 mh = Adafruit_MotorHAT(addr=0x60)
@@ -41,7 +43,7 @@ def turnOffMotors():
     
 atexit.register(turnOffMotors)
 
-from controlers import *
+
 
 def increase_speed():
     print(store["speed"])
@@ -74,12 +76,6 @@ def save():
         if name == 10:
             increase_speed()
             return "speed"
-        if name == 20:
-            # db.execute("INSERT INTO admins (name, password) values ('mohsen','11111')")
-            user_1 = User('Mohsen3', 'mohmon@gmail.com')
-            db.session.add(user_1)
-            db.session.commit()
-            return "cool"
 
 
         
@@ -111,11 +107,14 @@ def check_api():
 
 @app.route('/get-users',methods=['get'])
 def get_users():
-    users = db.session.query(Users)
+    users = db.session.query(Users).all()
     users_json = []
     for user in users:
         single_user_json = {
+            'id': user.id,
             'name': user.name,
+            'email':user.email,
+            'password':user.password
         }
         users_json.append(single_user_json)
         
