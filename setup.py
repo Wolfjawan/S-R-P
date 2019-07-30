@@ -25,8 +25,8 @@ setup(name='S-R-P',
           'Flask-Cors',
           'Flask-SQLAlchemy',
           'SQLAlchemy'
-      ],
+          ],
       entry_points={
           'console_scripts': ['srp = server.py']
-      },
+          },
       packages=find_packages())
