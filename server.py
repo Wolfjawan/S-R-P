@@ -100,7 +100,7 @@ def moveControl():
 
 @app.route("/")
 def hello():
-    return "Hello there this is mohsen's python server"
+    return "<div style='display: flex;flex-wrap: wrap;justify-content: space-around;'><span style='text-align: center;margin-top: 50px; width: 80%;border: 2px solid #a75353;height: fit-content;padding: 40px;background-color: #c7c2c2;box-shadow: 2px 5px 10px rgba(0,0,0,.25);border-radius: 10px;font-weight: bold;font-size: 50px;'>HELLO THERE WELCOME TO MY PYTHON SERVER</span><span style='width: 80%;margin-top: 50px; display: flex;flex-wrap: wrap;justify-content: space-around;'><img style='text-align: center;width: fit-content;border: 2px solid #a75353;height: fit-content;background-color: #c7c2c2;box-shadow: 2px 5px 10px rgba(0,0,0,.25);border-radius: 50%;' src='https://avatars3.githubusercontent.com/u/30389896?s=400&u=ca31770f8782515d9a6c4749848796e649f0635e&v=4'/></span></div>"
 
 
 # @app.route('/login',methods=['post'])
