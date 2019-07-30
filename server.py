@@ -37,40 +37,40 @@ def turnOffMotors():
     mh.getMotor(1).run(Adafruit_MotorHAT.RELEASE)
     mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
     mh.getMotor(3).run(Adafruit_MotorHAT.RELEASE)
-    mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE) 
+    mh.getMotor(4).run(Adafruit_MotorHAT.RELEASE)
 
 def turnOffM2():
     print("turnOffM2")
-    mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)  
+    mh.getMotor(2).run(Adafruit_MotorHAT.RELEASE)
 
 atexit.register(turnOffMotors)
 
 
 def m1goForward():
-    print("m1 Forward")  
+    print("m1 Forward")
     myMotor1.run(Adafruit_MotorHAT.FORWARD)
     myMotor1.setSpeed(variables["m1speed"])
 
 def m1goBackward():
-    print("m1 Backward")  
+    print("m1 Backward")
     myMotor1.run(Adafruit_MotorHAT.BACKWARD)
     myMotor1.setSpeed(variables["m1speed"])
 
 def m2goForward():
-    print("m2 Forward")  
+    print("m2 Forward")
     myMotor2.run(Adafruit_MotorHAT.FORWARD)
     myMotor2.setSpeed(variables["m2speed"])
 
 def m2goBackward():
-    print("m2 Backward")  
+    print("m2 Backward")
     myMotor2.run(Adafruit_MotorHAT.BACKWARD)
-    myMotor2.setSpeed(variables["m2speed"])  
+    myMotor2.setSpeed(variables["m2speed"])
 
 @app.route('/move-control',methods=['post'])
 def moveControl():
     if request.method == "POST":
         req_data = request.get_json()
-#move control        
+#move control
         if req_data['moveType']:
             if req_data['moveType'] == 'forward':
                 variables["m1speed"]=req_data['speed']
@@ -81,7 +81,7 @@ def moveControl():
             if req_data['moveType'] == 'stop':
                 variables["m1speed"]=req_data['speed']
                 turnOffMotors()
-                
+
 # tern control
             if req_data['ternType'] == 'ternLeft':
                 m2goForward()
@@ -92,16 +92,16 @@ def moveControl():
             if req_data['ternType'] == 'turnOffM2':
                 variables["m2speed"]=req_data['ternSpeed']
                 turnOffM2()
-        return ""  
-               
+        return ""
 
 
-            
 
-# @app.route("/")
-# def hello():
-#     return "Hello there this is mohsen's python server"
-        
+
+
+@app.route("/")
+def hello():
+    return "Hello there this is mohsen's python server"
+
 
 # @app.route('/login',methods=['post'])
 # def login():
@@ -109,12 +109,12 @@ def moveControl():
 #         req_data = request.get_json()
 #         name = req_data['user_name']
 #         password = req_data['password']
-        
+
 #         #if user["user_name"]==user_name and user["password"]==password:
 #             #user_status = True
 #             #print(user_status)
 #             #return "true"
-        
+
 #         content = "user name or password are wrong"
 #         return content, status.HTTP_404_NOT_FOUND
 
@@ -125,8 +125,8 @@ def moveControl():
 # def check_api():
 #     if request.method == "POST":
 #         return "true"
-    
-    
+
+
 
 # @app.route('/get-users',methods=['get'])
 # def get_users():
@@ -140,6 +140,5 @@ def moveControl():
 #             'password':user.password
 #         }
 #         users_json.append(single_user_json)
-        
+
 #     return jsonify(users_json)
-     
