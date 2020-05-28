@@ -24,7 +24,8 @@ setup(name='S-R-P',
           'Flask-API',
           'Flask-Cors',
           'Flask-SQLAlchemy',
-          'SQLAlchemy'
+          'SQLAlchemy',
+          'flask_socketio'
           ],
       entry_points={
           'console_scripts': ['srp = server.py']
